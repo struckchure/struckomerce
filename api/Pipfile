@@ -9,6 +9,8 @@ djangorestframework = "*"
 pillow = "*"
 django-cors-headers = "*"
 whitenoise = "*"
+python-dotenv = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
