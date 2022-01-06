@@ -1,1 +1,1 @@
-# ecommerce
+# e-commerce application
