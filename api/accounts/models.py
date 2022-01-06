@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from rest_framework.authtoken.models import Token
 
-from ecommerce.base import BaseModel
+from ecommerce.utils import BaseModel
 
 
 class User(BaseModel, AbstractUser):
