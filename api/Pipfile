@@ -11,6 +11,7 @@ django-cors-headers = "*"
 whitenoise = "*"
 python-dotenv = "*"
 psycopg2 = "*"
+ipython = "*"
 
 [dev-packages]
 

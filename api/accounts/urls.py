@@ -2,6 +2,9 @@ from django.urls import path
 
 from accounts.api import LoginUserAPI, LogoutUserAPI, ProfileUserAPI, RegisterUserAPI
 
+app_name = "accounts"
+
+
 urlpatterns = [
     path("register/", RegisterUserAPI.as_view(), name="register"),
     path("login/", LoginUserAPI.as_view(), name="login"),
