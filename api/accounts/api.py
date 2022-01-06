@@ -1,6 +1,6 @@
 from rest_framework.generics import GenericAPIView as View
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.status import HTTP_205_RESET_CONTENT, HTTP_401_UNAUTHORIZED
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login, logout
@@ -41,7 +41,7 @@ class LoginUserAPI(View):
 
         if not user:
             return Response(
-                {"messsage": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
+                {"messsage": "Invalid credentials"}, status=HTTP_401_UNAUTHORIZED
             )
 
         login(request, user)
@@ -64,7 +64,7 @@ class LogoutUserAPI(View):
 
         return Response(
             {"message": "You are currently logged out"},
-            status=status.HTTP_205_RESET_CONTENT,
+            status=HTTP_205_RESET_CONTENT,
         )
 
 
