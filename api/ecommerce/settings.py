@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_yasg",
     "accounts",
     "store",
 ]
@@ -126,6 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # user model
 
 AUTH_USER_MODEL = "accounts.User"
+LOGIN_URL = "accounts:login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -143,6 +145,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join("media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,6 +1,10 @@
 from rest_framework.generics import GenericAPIView as View
 from rest_framework.response import Response
-from rest_framework.status import HTTP_205_RESET_CONTENT, HTTP_401_UNAUTHORIZED
+from rest_framework.status import (
+    HTTP_201_CREATED,
+    HTTP_205_RESET_CONTENT,
+    HTTP_401_UNAUTHORIZED,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login, logout
@@ -23,7 +27,8 @@ class RegisterUserAPI(View):
             {
                 "message": "Registration Successful",
                 "data": user_register_serializer.data,
-            }
+            },
+            status=HTTP_201_CREATED,
         )
 
 
@@ -52,13 +57,11 @@ class LoginUserAPI(View):
 
 
 class LogoutUserAPI(View):
-
-    permission_classes = [IsAuthenticated]
-
     def get(self, request):
-        user_token = Token.objects.filter(user=request.user)
-        if user_token.exists():
-            user_token.delete()
+        if request.user:
+            user_token = Token.objects.filter(user=request.user)
+            if user_token.exists():
+                user_token.delete()
 
         logout(request)
 

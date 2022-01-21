@@ -1,8 +1,7 @@
 from django.db import models
-import uuid
-import random
-import re
 from django.template.defaultfilters import slugify
+from rest_framework.generics import GenericAPIView, get_object_or_404
+import uuid, re
 
 
 class BaseModel(models.Model):
@@ -83,3 +82,11 @@ class BaseModel(models.Model):
                 re_sep = re.escape(separator)
             value = re.sub(r"^%s+|%s+$" % (re_sep, re_sep), "", value)
         return value
+
+
+class View(GenericAPIView):
+    def get_object(self, *args, **kwargs):
+        store = get_object_or_404(*args, **kwargs)
+        self.check_object_permissions(self.request, store)
+
+        return store

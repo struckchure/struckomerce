@@ -11,4 +11,5 @@ class IsObjectOwner(BasePermission):
     message = "You must be the creator of this object."
 
     def has_object_permission(self, request, view, obj):
-        return obj.owner == request.user
+        obj_owner = getattr(obj, "owner")
+        return obj_owner == request.user

@@ -12,6 +12,7 @@ whitenoise = "*"
 python-dotenv = "*"
 psycopg2 = "*"
 ipython = "*"
+drf-yasg = "*"
 
 [dev-packages]
 

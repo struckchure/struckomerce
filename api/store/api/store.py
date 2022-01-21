@@ -1,7 +1,7 @@
 from rest_framework.generics import GenericAPIView as View, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_205_RESET_CONTENT
+from rest_framework.status import HTTP_201_CREATED, HTTP_205_RESET_CONTENT
 
 from ecommerce.permissions import IsObjectOwner
 from store.models import Store
@@ -21,7 +21,8 @@ class CreateStoreAPI(View):
         store_create_serializer.save(owner=request.user)
 
         return Response(
-            {"message": "Store has been created", "data": store_create_serializer.data}
+            {"message": "Store has been created", "data": store_create_serializer.data},
+            status=HTTP_201_CREATED,
         )
 
 
