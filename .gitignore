@@ -545,3 +545,7 @@ Temporary Items
 .apdisk
 
 # End of https://www.toptal.com/developers/gitignore/api/django,node,react,reactnative
+
+# editor
+
+.vscode
