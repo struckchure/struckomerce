@@ -1,7 +1,5 @@
 from rest_framework.permissions import BasePermission
 
-from accounts.models import User
-
 
 class IsObjectOwner(BasePermission):
     """
@@ -11,5 +9,6 @@ class IsObjectOwner(BasePermission):
     message = "You must be the creator of this object."
 
     def has_object_permission(self, request, view, obj):
-        obj_owner = getattr(obj, "owner")
+        field_name = "owner"
+        obj_owner = getattr(obj, field_name)
         return obj_owner == request.user

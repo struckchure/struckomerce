@@ -86,7 +86,7 @@ class BaseModel(models.Model):
 
 class View(GenericAPIView):
     def get_object(self, *args, **kwargs):
-        store = get_object_or_404(*args, **kwargs)
-        self.check_object_permissions(self.request, store)
+        obj = get_object_or_404(*args, **kwargs)
+        self.check_object_permissions(self.request, obj)
 
-        return store
+        return obj

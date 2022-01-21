@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 from rest_framework.authtoken.models import Token
 
 from ecommerce.utils import BaseModel
