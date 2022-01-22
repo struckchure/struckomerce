@@ -15,3 +15,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@layer base {
+  /* transition */
+  button,
+  a {
+    @apply transition-all duration-200;
+  }
+
+  button,
+  input {
+    @apply rounded-md p-2 disabled:cursor-not-allowed;
+  }
+
+  button {
+    @apply bg-blue-700 hover:bg-blue-800 disabled:bg-blue-600 text-white w-fit px-4;
+  }
+
+  a {
+    @apply text-blue-700 hover:text-blue-800;
+  }
+
+  input {
+    @apply text-black border-[1px] border-solid border-gray-300 focus:outline-none disabled:bg-gray-100;
+  }
+
+  input[type="checkbox"] {
+    @apply inline w-fit mx-2;
+  }
+}
+
+@layer components {
+  .form-group > input {
+    @apply my-2;
+  }
+
+  .form-group > label {
+    @apply block;
+  }
+
+  button.icon {
+    @apply flex justify-center items-center p-0;
+  }
+
+  button.icon.right > i:first-child {
+    @apply rounded-l-[inherit];
+  }
+
+  button.icon.left > i:last-child {
+    @apply rounded-r-[inherit];
+  }
+
+  button.icon > i {
+    @apply block h-fit w-fit p-2 m-0;
+  }
+}
+
+@layer utilities {
+  .grid-center {
+    @apply grid place-content-center place-items-center;
+  }
+}
+
+.animate-entry {
+  opacity: 0.9;
+  animation: fade_in_out 0.5s forwards;
+}
+
+@keyframes fade_in_out {
+  to {
+    opacity: 1;
+  }
+}

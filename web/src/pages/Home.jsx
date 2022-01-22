@@ -1,14 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import BaseLayout from "../layouts/BaseLayout";
 
 export default function Home() {
   return (
-    <div className="container p-4">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dignissimos
-        cupiditate tenetur, iusto eligendi dolorem ipsum rerum expedita
-        perspiciatis alias mollitia aut dolor officia, voluptate consequuntur
-        provident nobis qui modi?
-      </p>
-    </div>
+    <BaseLayout>
+      <Link to={{ pathname: "/dashboard" }}>
+        <button>Dashboard</button>
+      </Link>
+    </BaseLayout>
   );
 }
