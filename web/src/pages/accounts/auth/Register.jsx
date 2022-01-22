@@ -35,13 +35,9 @@ function Register() {
         </div>
 
         <div className="my-2 grid-center gap-2">
-          <button className="icon left" disabled={is_loading}>
+          <button disabled={is_loading}>
             <span className="px-2">Register</span>
-            <i
-              className={`icon ${
-                is_loading ? "spinner animate-spin" : "arrow right bg-blue-800"
-              }`}
-            ></i>
+            <i className={"spinner animate-spin arrow right"}></i>
           </button>
 
           <small>

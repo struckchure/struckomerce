@@ -29,13 +29,9 @@ function Login() {
         </div>
 
         <div className="my-2 grid-center gap-2">
-          <button className="icon left" disabled={is_loading}>
+          <button className="left" disabled={is_loading}>
             <span className="px-2">Login</span>
-            <i
-              className={`icon ${
-                is_loading ? "spinner animate-spin" : "arrow right bg-blue-800"
-              }`}
-            ></i>
+            <i className={"icon spinner arrow right"}></i>
           </button>
           <small>
             <Link to={{ pathname: "/register/" }}>I don't have an account</Link>

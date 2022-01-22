@@ -1,18 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import logo_img from "../assets/img/logo.png";
+
 export default function Logo(
-  { size = "small", animate = true, showText = true, color = "text-white" },
+  {
+    showText = true,
+    color = "text-white",
+    brand_name = "Code With Struckchure",
+    imageProps,
+  },
   props
 ) {
   return (
-    <Link className={`hover:text-current ${color}`} to={{ pathname: "/" }}>
-      <div {...props}>
-        <i
-          className={`icon shop ${size} ${animate ? "animate-bounce" : ""}`}
-        ></i>
-        {showText && <span className="mx-2">E-Commerce</span>}
-      </div>
-    </Link>
+    <div className="grid-center gap-2" {...props}>
+      <Link className={`hover:text-current ${color}`} to={{ pathname: "/" }}>
+        <img
+          src={logo_img}
+          alt="CWS logo"
+          className={`object-fit w-[5rem] h-auto`}
+          {...imageProps}
+        />
+      </Link>
+      {showText && <span className="mx-2 font-mono">{brand_name}</span>}
+    </div>
   );
 }

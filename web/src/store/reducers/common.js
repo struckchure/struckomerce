@@ -6,8 +6,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const { common } = state;
-
   switch (action.type) {
     case SET_LOADING:
       return {
