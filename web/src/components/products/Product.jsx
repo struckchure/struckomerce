@@ -28,9 +28,9 @@ function Product({
             orientation == "flex-row"
               ? "w-[15rem] sm:w-[7.5rem] mx-2"
               : "w-[20rem] sm:w-[15rem]"
-          } h-auto rounded-lg transform hover:scale-125`}
+          } h-auto rounded-lg transform hover:scale-125 hover:blur-[2px]`}
           src={image}
-          alt=""
+          alt={`image of ${title}`}
         />
 
         <div
@@ -38,12 +38,16 @@ function Product({
             hovered ? "left-[5%]" : "left-[5%] sm:md:left-[-35%]"
           }`}
         >
-          <button className="shadow-lg p-1">
-            <i className="icon heart"></i>
+          <button className="shadow-lg w-10 h-10 px-[0.2rem]">
+            <span>
+              <i className="icon heart outline outline-0"></i>
+            </span>
           </button>
 
-          <button className="shadow-lg p-1">
-            <i className="icon cart plus"></i>
+          <button className="shadow-lg w-10 h-10 px-[0.2rem]">
+            <span>
+              <i className="icon cart plus"></i>
+            </span>
           </button>
         </div>
       </div>

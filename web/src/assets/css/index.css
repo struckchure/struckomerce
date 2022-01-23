@@ -17,6 +17,10 @@ code {
 }
 
 @layer base {
+  main {
+    @apply h-screen w-full;
+  }
+
   nav,
   footer {
     @apply bg-gray-800;
@@ -50,10 +54,12 @@ code {
   }
 
   input {
-    @apply bg-gray-900 focus:bg-gray-800 hover:bg-gray-800 rounded-full px-4
-    transition-all duration-200 border-gray-700 border-solid border-[1px]
+    @apply bg-gray-900 focus:bg-gray-800 hover:bg-gray-800
+    rounded-full px-4 transition-all duration-200 
+    border-gray-700 border-solid border-[1px]
     text-gray-400 text-sm placeholder:tracking-widest
-    focus:outline-none disabled:bg-gray-700;
+    focus:outline-none disabled:bg-gray-700
+    invalid:border-red-800;
   }
 
   input[type="checkbox"] {
@@ -78,13 +84,13 @@ code {
 }
 
 .animate-entry {
-  opacity: 0.9;
   animation: fade_in_out 0.5s forwards;
+  @apply blur-sm static top-0 left-0 w-full h-screen;
 }
 
 @keyframes fade_in_out {
   to {
-    opacity: 1;
+    @apply blur-0;
   }
 }
 

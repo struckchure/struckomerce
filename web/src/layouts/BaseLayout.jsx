@@ -7,10 +7,12 @@ import Loader from "../components/Loader";
 
 function BaseLayout({ children }) {
   return (
-    <div className="animate-entry bg-gradient-to-br from-slate-800 to-gray-900 text-white overflow-auto h-screen w-full">
+    <main>
       <Loader />
-      {children}
-    </div>
+      <div className="animate-entry bg-gradient-to-br from-slate-800 to-gray-900 text-white overflow-auto h-screen w-full">
+        {children}
+      </div>
+    </main>
   );
 }
 
