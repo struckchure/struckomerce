@@ -1,0 +1,52 @@
+name: Halcyon API
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      working_dir: ./api
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Updating pip
+        run: pip3 install --upgrade pip
+
+      - name: Create environment
+        run: |
+          pip3 install pipenv
+          pipenv shell
+          pipenv install
+
+      - name: Running DB migrations
+        run: |
+          pipenv shell
+          python api/manage.py makemigrations
+          python api/manage.py migrate
+
+  test:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Activate environment
+        run: |
+          pipenv shell
+
+      - name: Running tests
+        run: |
+          python api/manage.py test
+
+  deploy:
+    runs-on: self-hosted
+    needs: [build, test]
+
+    steps:
+      - name: Deploying to server
+        run: |
+          # sh api/reload-gunicorn.sh
+          ls
