@@ -118,7 +118,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/
@@ -546,6 +546,6 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/django,node,react,reactnative
 
-# editor
+# editorf
 
 .vscode

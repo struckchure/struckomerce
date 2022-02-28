@@ -13,6 +13,7 @@ python-dotenv = "*"
 psycopg2 = "*"
 ipython = "*"
 drf-yasg = "*"
+gunicorn = "*"
 
 [dev-packages]
 
