@@ -1,1 +1,1 @@
-gunicorn modernatta.wsgi
+gunicorn ecommerce.wsgi
