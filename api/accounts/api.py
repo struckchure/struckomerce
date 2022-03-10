@@ -46,7 +46,7 @@ class LoginUserAPI(View):
 
         if not user:
             return Response(
-                {"messsage": "Invalid credentials"}, status=HTTP_401_UNAUTHORIZED
+                {"message": "Invalid credentials"}, status=HTTP_401_UNAUTHORIZED
             )
 
         login(request, user)
