@@ -38,6 +38,8 @@ services:
     build:
       context: .docker/nginx
       dockerfile: ${PWD}/.docker/nginx/Dockerfile
+    ports:
+      - "80:80"
 
 volumes:
   postgres_data:
