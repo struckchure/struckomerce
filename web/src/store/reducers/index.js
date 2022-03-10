@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
-import auth from "./auth";
+import accounts from "./accounts";
 import common from "./common";
 
 const rootReducer = combineReducers({
-  auth,
+  accounts,
   common,
 });
 

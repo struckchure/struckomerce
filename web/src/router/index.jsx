@@ -13,6 +13,7 @@ import Register from "../pages/accounts/auth/Register";
 // dashboard
 import Dashboard from "../pages/accounts/Dashboard";
 import Cart from "../pages/accounts/Cart";
+import Logout from "../pages/accounts/auth/Logout";
 
 export default () => {
   return (
@@ -23,6 +24,7 @@ export default () => {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
         </Route>
 
         <Route path="dashboard" element={<Outlet />}>

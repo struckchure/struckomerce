@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 export const Loader = ({ is_loading }) => {
-  return is_loading ? (
-    <div className="fixed top-0 left-0 w-full h-screen z-20 bg-[rgba(0,0,0,0.3)]">
-      <div className="blur-[10rem] progress-bar"></div>
+  let show = is_loading;
+
+  useEffect(() => {
+    show = is_loading;
+  }, [show]);
+
+  return show ? (
+    <div className="fixed top-0 left-0 z-20 h-screen w-full bg-[rgba(0,0,0,0.3)]">
+      <div className="progress-bar blur-[10rem]"></div>
       <div className="p-4">
-        <i className="icon circle notch animate-spin text-white large"></i>
+        <i className="icon circle notch large animate-spin text-white"></i>
       </div>
     </div>
   ) : null;

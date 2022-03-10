@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getUserProfile } from "../store/actions/accounts";
+
 import Categories from "../components/products/Categories";
 import Product from "../components/products/Product";
 import BaseLayout from "../layouts/BaseLayout";
@@ -6,7 +9,11 @@ import BaseLayout from "../layouts/BaseLayout";
 import product_image from "../assets/img/prod-1.jpg";
 import ProductList from "../components/products/ProductList";
 
-export default function Home() {
+function Home({ getUserProfile, user }) {
+  useEffect(() => {
+    getUserProfile();
+  }, []);
+
   let category_list = [
     {
       text: "All Categories",
@@ -88,3 +95,10 @@ export default function Home() {
     </BaseLayout>
   );
 }
+
+const mapStateToProps = (state) => ({ user: state.accounts.user });
+const mapDispatchToProps = {
+  getUserProfile,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

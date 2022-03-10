@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import BaseLayout from "../../layouts/BaseLayout";
 
 function Dashboard() {

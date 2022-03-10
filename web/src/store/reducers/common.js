@@ -13,7 +13,13 @@ export default (state = initialState, action) => {
         is_loading: action.payload,
       };
     case SET_ERROR:
-      const { message, status } = action.payload;
+      if (!action.payload) return { ...state, error: null };
+
+      const {
+        data: { message },
+        status,
+      } = action.payload.response;
+
       return {
         ...state,
         error: { message, status },

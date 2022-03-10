@@ -14,7 +14,7 @@ function Product({
 
   return (
     <div
-      className={`bg-gray-800 rounded-lg w-fit shadow-lg flex ${orientation}`}
+      className={`flex w-fit rounded-lg bg-gray-800 shadow-lg ${orientation}`}
       onMouseEnter={() => {
         set_hover(true);
       }}
@@ -22,29 +22,29 @@ function Product({
         set_hover(false);
       }}
     >
-      <div className="rounded-[inherit] overflow-hidden relative">
+      <div className="relative overflow-hidden rounded-[inherit]">
         <img
           className={`object-fit ${
             orientation == "flex-row"
-              ? "w-[15rem] sm:w-[7.5rem] mx-2"
+              ? "mx-2 w-[15rem] sm:w-[7.5rem]"
               : "w-[20rem] sm:w-[15rem]"
-          } h-auto rounded-lg transform hover:scale-125 hover:blur-[2px]`}
+          } h-auto transform rounded-lg hover:scale-125 hover:blur-[2px]`}
           src={image}
           alt={`image of ${title}`}
         />
 
         <div
-          className={`flex flex-col gap-2 absolute top-[5%] w-fit h-fit ${
+          className={`absolute top-[5%] flex h-fit w-fit flex-col gap-2 ${
             hovered ? "left-[5%]" : "left-[5%] sm:md:left-[-35%]"
           }`}
         >
-          <button className="shadow-lg w-10 h-10 px-[0.2rem]">
+          <button className="h-10 w-10 px-[0.2rem] shadow-lg">
             <span>
               <i className="icon heart outline outline-0"></i>
             </span>
           </button>
 
-          <button className="shadow-lg w-10 h-10 px-[0.2rem]">
+          <button className="h-10 w-10 px-[0.2rem] shadow-lg">
             <span>
               <i className="icon cart plus"></i>
             </span>
@@ -63,7 +63,7 @@ function Product({
         <span className="block text-gray-400">{sold} sold</span>
         <small>{info}</small>
 
-        <div className="flex sm:flex-row gap-x-2 flex-col justify-between pt-4 px-2">
+        <div className="flex flex-col justify-between gap-x-2 px-2 pt-4 sm:flex-row">
           <label htmlFor="">{price}</label>
           <div className="text-sm">
             <i className="icon star"></i>
