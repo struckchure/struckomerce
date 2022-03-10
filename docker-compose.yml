@@ -9,12 +9,11 @@ services:
       - ./api:/home/django/app/
     env_file:
       - .env
-    ports:
-      - "8000:8000"
     depends_on:
       - db
     restart: unless-stopped
     command: python manage.py runserver 0.0.0.0:8000
+    network_mode: host
 
   db:
     image: postgres:14.1-alpine
@@ -26,16 +25,15 @@ services:
       - POSTGRES_PASSWORD=${SQL_PASSWORD}
     network_mode: host
     restart: unless-stopped
-  
+
   web:
     build:
       context: web
       dockerfile: ${PWD}/.docker/node/Dockerfile
-    command: pm2 serve dist/ 8000 --name 'ecommerce' --spa --no-daemon
-    ports:
-      - "3030:8000"
     restart: unless-stopped
-  
+    command: pm2 serve dist/ 3030 --name 'ecommerce' --spa --no-daemon
+    network_mode: host
+
   nginx:
     build:
       context: .docker/nginx
