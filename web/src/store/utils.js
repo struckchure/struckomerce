@@ -3,7 +3,7 @@ import axios from "axios";
 // axios settings
 const DEBUG = import.meta.env.DEV;
 
-const PROD_API_URL = "https://struckomerce.herokuapp.com";
+const PROD_API_URL = "https://struckomerce.struckchure.com";
 const DEV_API_URL = "http://localhost:8000";
 
 const BASE_URL = DEBUG ? DEV_API_URL : PROD_API_URL;
