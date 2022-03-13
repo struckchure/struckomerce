@@ -7,7 +7,7 @@ COPY yarn.lock yarn.lock
 
 RUN yarn
 
-FROM base as prod
+FROM base as production
 
 # install pm2
 
