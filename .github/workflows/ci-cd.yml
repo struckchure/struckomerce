@@ -20,8 +20,9 @@ jobs:
         run: |
           docker-compose build
 
-  test[api]:
+  test-api:
     runs-on: self-hosted
+    depends: [build]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,10 +30,10 @@ jobs:
       - name: Django API Test
         run: |
           docker-compose run api python manage.py test
-  
-  test[web]:
+
+  test-web:
     runs-on: self-hosted
-    needs: [build, test[api]]
+    needs: [build, test-api]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -43,7 +44,7 @@ jobs:
 
   deploy:
     runs-on: self-hosted
-    needs: [build, test[api], test[web]]
+    needs: [build, test-api, test-web]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
