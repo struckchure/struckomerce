@@ -18,7 +18,7 @@ services:
     volumes:
       - ./api:/home/django/app/
     env_file:
-      - .env
+      - .env.dev
     restart: unless-stopped
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
