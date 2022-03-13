@@ -6,6 +6,18 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  DEBUG: ${{ secrets.DEBUG }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+  CORS_ALLOWED_ORIGINS: ${{ secrets.CORS_ALLOWED_ORIGINS }}
+  SQL_ENGINE: ${{ secrets.SQL_ENGINE }}
+  SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
+  SQL_USER: ${{ secrets.SQL_USER }}
+  SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+  SQL_HOST: ${{ secrets.SQL_HOST }}
+  SQL_PORT: ${{ secrets.SQL_PORT }}
+
 jobs:
   build:
     runs-on: self-hosted
@@ -15,18 +27,7 @@ jobs:
 
       - name: Create environment files
         run: |
-          touch .env
-          echo DEBUG=${{ secrets.DEBUG }} > .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} > .env
-          echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} > .env
-          echo CORS_ALLOWED_ORIGINS=${{ secrets.CORS_ALLOWED_ORIGINS }} > .env
-          echo SQL_ENGINE=${{ secrets.SQL_ENGINE }} > .env
-          echo SQL_DATABASE=${{ secrets.SQL_DATABASE }} > .env
-          echo SQL_USER=${{ secrets.SQL_USER }} > .env
-          echo SQL_PASSWORD=${{ secrets.SQL_PASSWORD }} > .env
-          echo SQL_HOST=${{ secrets.SQL_HOST }} > .env
-          echo SQL_PORT=${{ secrets.SQL_PORT }} > .env
-          cat .env
+          sh create-env-file.sh
 
       - name: Build Docker image
         run: |
@@ -40,21 +41,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create environment files
+        run: |
+          sh create-env-file.sh
+
       - name: Django API Test
         run: |
           docker-compose run api python manage.py test
 
   test-web:
     runs-on: self-hosted
-    needs: [build, test-api]
+    needs: [build]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Django API Test
+      - name: Create environment files
         run: |
-          docker-compose run web yarn test
+          sh create-env-file.sh
+
+      - name: React Test
+        run: |
+          docker-compose run api yarn test
 
   deploy:
     runs-on: self-hosted
@@ -64,6 +73,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create environment files
+        run: |
+          sh create-env-file.sh
+
       - name: Start/Reload pm2
         run: |
           docker-compose up -d
@@ -72,6 +85,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create environment files
+        run: |
+          sh create-env-file.sh
+
       - name: Cleanup containers
         run: |
           docker image prune -f
