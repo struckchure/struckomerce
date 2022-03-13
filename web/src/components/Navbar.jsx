@@ -8,17 +8,9 @@ import Logo from "./Logo";
 function Navbar({ show_search_bar = true, user, getUserProfile }) {
   let is_authenticated = user ? true : false;
 
-  const [sidebar_is_open, set_sidebar_is_open] = useState(false);
-
   useEffect(() => {
-    // document.addEventListener("click", ({ target }) => {
-    //   const elem = document.querySelector(".sidebar");
-    //   if (target != elem) {
-    //     set_sidebar_is_open(false);
-    //   }
-    // });
     getUserProfile();
-  }, [sidebar_is_open]);
+  }, []);
 
   return (
     <nav className="top-0 z-10 border-b-[1px] border-solid border-gray-700 py-2 px-4 sm:sticky">
@@ -72,12 +64,7 @@ function Navbar({ show_search_bar = true, user, getUserProfile }) {
 
           {is_authenticated ? (
             <li className="mx-2">
-              <button
-                className="p-2"
-                onClick={() => {
-                  set_sidebar_is_open(!sidebar_is_open);
-                }}
-              >
+              <button className="p-2">
                 <i className="icon user"></i>
               </button>
             </li>
@@ -94,38 +81,6 @@ function Navbar({ show_search_bar = true, user, getUserProfile }) {
           )}
         </ul>
       </div>
-
-      <div
-        className={`fixed top-0 left-0 z-[-1] h-screen w-full transform bg-[rgba(0,0,0,0.5)] blur-3xl ${
-          sidebar_is_open ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      <section
-        className={`fixed right-20 top-24 z-20 ${
-          sidebar_is_open ? "scale-100" : "scale-0"
-        } sidebar transform`}
-      >
-        <ul className="flex h-fit flex-col gap-4">
-          <li>
-            <Link
-              className="rounded-full bg-gray-700 p-2 text-white hover:no-underline"
-              to="/dashboard"
-            >
-              <i className="icon home"></i>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              className="rounded-full bg-gray-700 p-2 text-white hover:no-underline"
-              to="/logout"
-            >
-              <i className="icon logout"></i>
-            </Link>
-          </li>
-        </ul>
-      </section>
     </nav>
   );
 }

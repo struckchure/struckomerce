@@ -41,12 +41,12 @@ code {
   }
 
   button {
-    @apply bg-gray-900 hover:bg-gray-800 text-gray-200
-    border-gray-700 border-solid border-[1px] rounded-full w-fit px-4;
+    @apply w-fit rounded-full border-[1px]
+    border-solid border-gray-700 bg-gray-900 px-4 text-gray-200 hover:bg-gray-800;
   }
 
   button > i {
-    @apply block h-fit w-fit p-0 m-0;
+    @apply m-0 block h-fit w-fit p-0;
   }
 
   a {
@@ -54,16 +54,16 @@ code {
   }
 
   input {
-    @apply bg-gray-900 focus:bg-gray-800 hover:bg-gray-800
-    rounded-full px-4 transition-all duration-200 
-    border-gray-700 border-solid border-[1px]
-    text-gray-400 text-sm placeholder:tracking-widest
-    focus:outline-none disabled:bg-gray-700
-    invalid:border-red-800;
+    @apply rounded-full border-[1px] border-solid
+    border-gray-700 bg-gray-900 px-4 text-sm 
+    text-gray-400 transition-all duration-200
+    placeholder:tracking-widest invalid:border-red-800 hover:bg-gray-800
+    focus:bg-gray-800 focus:outline-none
+    disabled:bg-gray-700;
   }
 
   input[type="checkbox"] {
-    @apply inline w-fit mx-2;
+    @apply mx-2 inline w-fit;
   }
 }
 
@@ -85,7 +85,7 @@ code {
 
 .animate-entry {
   animation: fade_in_out 0.5s forwards;
-  @apply blur-sm static top-0 left-0 w-full h-screen;
+  @apply static top-0 left-0 h-screen w-full blur-sm;
 }
 
 @keyframes fade_in_out {
@@ -95,7 +95,7 @@ code {
 }
 
 .progress-bar {
-  @apply w-0 h-full absolute top-0 left-0 bg-[rgba(0,0,0,0.25)];
+  @apply absolute top-0 left-0 h-full w-0 bg-[rgba(0,0,0,0.25)];
   animation: progress_bar 1s infinite 2s;
 }
 

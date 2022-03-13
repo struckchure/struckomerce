@@ -29,7 +29,7 @@ services:
   web:
     build:
       context: web
-      dockerfile: ${PWD}/.docker/node/Dockerfile
+      dockerfile: ${PWD}/.docker/node/Dockerfile.dev
     volumes:
       - ./web:/app
     restart: unless-stopped
