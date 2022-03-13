@@ -51,7 +51,7 @@ jobs:
 
   test-web:
     runs-on: self-hosted
-    needs: [build]
+    needs: [test-api]
 
     steps:
       - name: Checkout code
@@ -63,11 +63,11 @@ jobs:
 
       - name: React Test
         run: |
-          docker-compose run api yarn test
+          docker-compose run web yarn test
 
   deploy:
     runs-on: self-hosted
-    needs: [build, test-api, test-web]
+    needs: [test-web]
 
     steps:
       - name: Checkout code
@@ -83,6 +83,7 @@ jobs:
 
   clean_up:
     runs-on: self-hosted
+    needs: [deploy]
 
     steps:
       - name: Checkout code

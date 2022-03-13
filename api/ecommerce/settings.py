@@ -29,14 +29,14 @@ SECRET_KEY = os.getenv("SECRET_KEY", "some-radnom-kjn")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.getenv("DEBUG", True))
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ") or ["*"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split() or ["*"]
 
 # CORS configs
 
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
-    CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS") or [
+    CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS").split() or [
         "http://localhost:3030",
     ]
 
