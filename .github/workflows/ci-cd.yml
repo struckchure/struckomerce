@@ -80,19 +80,4 @@ jobs:
       - name: Start/Reload pm2
         run: |
           docker-compose up -d
-
-  clean-up:
-    runs-on: self-hosted
-    needs: [deploy]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create environment files
-        run: |
-          sh create-env-file.sh
-
-      - name: Cleanup containers
-        run: |
           docker image prune -f
