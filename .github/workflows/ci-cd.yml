@@ -13,12 +13,37 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image and Static files
+      - name: Create environment files
+        run: sh create-env-file.sh
+
+      - name: Build Docker image
         run: |
           docker-compose build
+
+  test[api]:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Django API Test
+        run: |
+          docker-compose run api python manage.py test
+  
+  test[web]:
+    runs-on: self-hosted
+    needs: [build, test[api]]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Django API Test
+        run: |
+          docker-compose run web yarn test
+
   deploy:
     runs-on: self-hosted
-    needs: [build]
+    needs: [build, test[api], test[web]]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
