@@ -13,7 +13,8 @@ services:
       - db
     restart: unless-stopped
     command: python manage.py runserver 0.0.0.0:8000
-    network_mode: host
+    ports:
+      - 8005:8000
 
   db:
     image: postgres:14.1-alpine
@@ -23,7 +24,6 @@ services:
       - POSTGRES_DB=${SQL_DATABASE}
       - POSTGRES_USER=${SQL_USER}
       - POSTGRES_PASSWORD=${SQL_PASSWORD}
-    network_mode: host
     restart: unless-stopped
 
   web:
@@ -32,13 +32,14 @@ services:
       dockerfile: ${PWD}/.docker/node/Dockerfile
     restart: unless-stopped
     command: pm2 serve dist/ 3030 --name 'ecommerce' --spa --no-daemon
-    network_mode: host
+    ports:
+      - 8006:3030
 
-  nginx:
-    build:
-      context: .docker/nginx
-      dockerfile: ${PWD}/.docker/nginx/Dockerfile
-    network_mode: bridge
+#   nginx:
+#     build:
+#       context: .docker/nginx
+#       dockerfile: ${PWD}/.docker/nginx/Dockerfile
+#     network_mode: bridge
 
 volumes:
   postgres_data:
