@@ -81,7 +81,7 @@ jobs:
         run: |
           docker-compose up -d
 
-  clean_up:
+  clean-up:
     runs-on: self-hosted
     needs: [deploy]
 
