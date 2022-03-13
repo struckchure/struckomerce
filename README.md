@@ -1,8 +1,6 @@
 # Struckomerce
 
-E-Commerce Application preview @ https://struckomerce.struckchure.com/
-
-Hello, World
+E-Commerce Application preview @ https://struckomerce.struckchure.com
 
 # API Documentation
 
