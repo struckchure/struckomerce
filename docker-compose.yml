@@ -30,6 +30,7 @@ services:
     build:
       context: web
       dockerfile: ${PWD}/.docker/node/Dockerfile
+      target: production
     restart: unless-stopped
     command: pm2 serve dist/ 3030 --name 'ecommerce' --spa --no-daemon
     ports:
