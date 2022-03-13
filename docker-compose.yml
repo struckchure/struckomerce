@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     command: python manage.py runserver 0.0.0.0:8000
     ports:
-      - 8005:8000
+      - 8006:8000
 
   db:
     image: postgres:14.1-alpine
@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
     command: pm2 serve dist/ 3030 --name 'ecommerce' --spa --no-daemon
     ports:
-      - 8006:3030
+      - 8007:3030
 
 #   nginx:
 #     build:
